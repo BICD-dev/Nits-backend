@@ -27,7 +27,7 @@ export const SignUpService = async function (username, password, firstname) {
     const successMessage = {
         "success":true,
         "message":"Account created successfully",
-        "data":newUser.id
+        "data":{id: newUser.id}
     } 
 
     return {"code":successCode, "message":successMessage}
