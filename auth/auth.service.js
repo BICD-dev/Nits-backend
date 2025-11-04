@@ -12,7 +12,7 @@ export const SignUpService = async function (username, password, firstname) {
     // check if username exists 
     const user = await User.findOne({username});
     if(user){
-        let errorCode = 300; //look for the actual code for a resource already existing
+        let errorCode = 409
         const errorMessage = {"success":false, "message":"Username already in use "}
         return {"code":errorCode, "message":errorMessage}
     }
@@ -42,7 +42,7 @@ export const loginService = (username,password)=>{
         return {"code":errorCode, "message":errorMessage}
     }
     // check if username exists
-    const user = User.findOne({username});
+    const user = await User.findOne({username});
     if(!user){
         let errorCode = 404;
         const errorMessage = {"success":false, "message":"Username not found"}
@@ -50,7 +50,7 @@ export const loginService = (username,password)=>{
     }
 
     // check if password is correct
-    const isMatch = bcrypt.compare(password,user.password);
+    const isMatch = await bcrypt.compare(password,user.password);
     if(!isMatch){
         let errorCode = 400;
         const errorMessage = {"success":false, "message":"Incorrect username or password"}
