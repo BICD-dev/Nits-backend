@@ -19,7 +19,7 @@ export const SignUpService = async function (username, password, firstname) {
 
     // also check if the usrename exists
     // hash the password
-    const hashedPassword = bcrypt.hash(password,12)
+    const hashedPassword = await bcrypt.hash(password,12)
     // create the account
     const newUser = await User.create({firstname,username,hashedPassword});
 
