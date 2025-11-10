@@ -12,8 +12,8 @@ app.use((err, req, res, next) => {
   console.error(err.stack)
   res.status(500).send('Something broke!')
 })
-// authentication middleware
-// login route
+// authentication middleware here
+
 
 // home route
 app.get('/',(req,res)=>{
@@ -21,6 +21,8 @@ app.get('/',(req,res)=>{
 })
 // login routes
 app.use(loginRouter)
+
+// app entry point
 app.listen(PORT , () => {
   console.log('Server is running on port 3000')
 })
